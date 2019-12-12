@@ -6,11 +6,12 @@
 
     <groupId>io.github.alexswilliams</groupId>
     <artifactId>logstash-log4j2-encoder</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>Logstash Encoder for Log4j2</name>
-    <description>Encoder for JSON-formatted logging, compatible with logstash and fluentd, similar to the
+    <description>
+        Encoder for JSON-formatted logging, compatible with logstash and fluent, similar to the
         logstash-logback-encoder project
     </description>
     <url>https://github.com/alexswilliams/logstash-log4j2-encoder</url>
@@ -21,8 +22,16 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <developers>
+        <developer>
+            <name>Alex Williams</name>
+            <email>lexw@live.co.uk</email>
+        </developer>
+    </developers>
     <scm>
-        <url>https://github.com/alexswilliams/logstash-log4j2-encoder</url>
+        <connection>scm:git:git://github.com/alexswilliams/logstash-log4j2-encoder.git</connection>
+        <developerConnection>scm:git:ssh://github.com:alexswilliams/logstash-log4j2-encoder.git</developerConnection>
+        <url>https://github.com/alexswilliams/logstash-log4j2-encoder/tree/master</url>
     </scm>
 
     <properties>
@@ -126,6 +135,10 @@
                     <id>ossrh</id>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                 </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+                </repository>
             </distributionManagement>
             <build>
                 <plugins>
