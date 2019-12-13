@@ -18,13 +18,12 @@ import java.util.Map;
 import java.util.Set;
 
 @Plugin(name = "Mdc", category = Node.CATEGORY, elementType = "provider")
-public class Mdc implements Provider {
-    @PluginFactory
+public final class Mdc implements Provider {
     @Contract(value = "_,_ -> new", pure = true)
-    @NotNull
-    public static Mdc newMdc(
-            @PluginElement("IncludeMdcKeyNames") @Nullable final IncludeMdcKeyNames includeMdcKeyNames,
-            @PluginElement("ExcludeMdcKeyNames") @Nullable final ExcludeMdcKeyNames excludeMdcKeyNames
+    @PluginFactory
+    public static @NotNull Mdc newMdc(
+            @PluginElement("IncludeMdcKeyNames") final @Nullable IncludeMdcKeyNames includeMdcKeyNames,
+            @PluginElement("ExcludeMdcKeyNames") final @Nullable ExcludeMdcKeyNames excludeMdcKeyNames
     ) {
         return new Mdc(
                 (includeMdcKeyNames == null) ? Collections.emptySet() : includeMdcKeyNames.getKeys(),
@@ -33,16 +32,13 @@ public class Mdc implements Provider {
     }
 
 
-    @NotNull
-    private final Set<@NotNull String> includedKeyNames;
-    @NotNull
-    private final Set<@NotNull String> excludedKeyNames;
+    private final @NotNull Set<@NotNull String> includedKeyNames;
+    private final @NotNull Set<@NotNull String> excludedKeyNames;
 
 
-    @NotNull
     @Contract(pure = true)
-    private Mdc(@NotNull final Set<@NotNull String> includedKeyNames,
-                @NotNull final Set<@NotNull String> excludedKeyNames
+    private @NotNull Mdc(final @NotNull Set<@NotNull String> includedKeyNames,
+                         final @NotNull Set<@NotNull String> excludedKeyNames
     ) {
         this.includedKeyNames = includedKeyNames;
         this.excludedKeyNames = excludedKeyNames;
@@ -50,8 +46,8 @@ public class Mdc implements Provider {
 
     @Override
     @Contract(mutates = "param1")
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
-        @Nullable final Map<@NotNull String, @Nullable String> contextMap = MDC.getCopyOfContextMap();
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
+        final @Nullable Map<@NotNull String, @Nullable String> contextMap = MDC.getCopyOfContextMap();
         if (contextMap == null)
             return;
 
@@ -61,13 +57,13 @@ public class Mdc implements Provider {
             keyNames.retainAll(includedKeyNames);
         }
 
+        //noinspection KeySetIterationMayUseEntrySet
         keyNames.forEach(key -> line.put(key, contextMap.get(key)));
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:Mdc";
     }
 

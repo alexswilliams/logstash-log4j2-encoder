@@ -11,29 +11,25 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 @Plugin(name = "FieldName", category = Node.CATEGORY)
-public class FieldName {
+public final class FieldName {
 
-    @NotNull
-    @Contract(value = "null -> fail", pure = true)
     @PluginFactory
-    public static FieldName newFieldName(@PluginValue("FieldName") @Required @NotNull final String fieldName) {
+    @Contract(value = "null -> fail", pure = true)
+    public static @NotNull FieldName newFieldName(@Required @PluginValue("FieldName") final @NotNull String fieldName) {
         Objects.requireNonNull(fieldName);
-        if (fieldName.trim().equals("")) throw new IllegalArgumentException("FieldName cannot be blank");
+        if (fieldName.trim().isEmpty()) throw new IllegalArgumentException("FieldName cannot be blank");
         return new FieldName(fieldName.trim());
     }
 
-    @NotNull
-    private final String fieldName;
+    private final @NotNull String fieldName;
 
-    @NotNull
     @Contract(pure = true)
-    private FieldName(@NotNull final String fieldName) {
+    private @NotNull FieldName(final @NotNull String fieldName) {
         this.fieldName = fieldName;
     }
 
-    @NotNull
     @Contract(pure = true)
-    public String getFieldName() {
+    public @NotNull String getFieldName() {
         return this.fieldName;
     }
 

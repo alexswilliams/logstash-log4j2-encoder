@@ -9,39 +9,36 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Plugin(name = "ExcludeMdcKeyNames", category = Node.CATEGORY)
-public class ExcludeMdcKeyNames {
+public final class ExcludeMdcKeyNames {
 
-    @NotNull
-    @Contract(value = "null -> fail", pure = true)
     @PluginFactory
-    public static ExcludeMdcKeyNames newExcludeMdcKeyNames(@PluginValue("ExcludeMdcKeyNames") @Required @NotNull final String keyNames) {
+    @Contract(value = "null -> fail", pure = true)
+    public static @NotNull ExcludeMdcKeyNames newExcludeMdcKeyNames(@Required @PluginValue("ExcludeMdcKeyNames") final @NotNull String keyNames) {
         Objects.requireNonNull(keyNames);
         final Set<String> keys = Arrays.stream(keyNames.split(","))
                 .map(String::trim)
-                .filter(it -> !"".equals(it))
+                .filter(it -> !it.isEmpty())
                 .collect(Collectors.toSet());
 
         return new ExcludeMdcKeyNames(keys);
     }
 
-    @NotNull
-    private final Set<@NotNull String> keys;
+    private final @NotNull Set<@NotNull String> keys;
 
-    @NotNull
     @Contract(pure = true)
-    private ExcludeMdcKeyNames(@NotNull final Set<@NotNull String> keys) {
+    private @NotNull ExcludeMdcKeyNames(final @NotNull Set<@NotNull String> keys) {
         this.keys = keys;
     }
 
-    @NotNull
     @Contract(pure = true)
-    public Set<String> getKeys() {
-        return this.keys;
+    public @NotNull Set<String> getKeys() {
+        return Collections.unmodifiableSet(this.keys);
     }
 
 }

@@ -20,50 +20,44 @@ import java.util.List;
 
 
 @Plugin(name = "LogstashJsonLayout", category = Node.CATEGORY, elementType = Layout.ELEMENT_TYPE, printObject = true)
-public class LogstashJsonLayout extends AbstractStringLayout {
+public final class LogstashJsonLayout extends AbstractStringLayout {
 
-    @Contract("_ -> new")
-    @NotNull
     @PluginFactory
-    public static LogstashJsonLayout newLayout(@PluginElement("providers") final Providers providers) {
+    @Contract("_ -> new")
+    public static @NotNull LogstashJsonLayout newLayout(@PluginElement("providers") final Providers providers) {
         return new LogstashJsonLayout(
                 ((providers == null) ? Providers.DEFAULT_PROVIDERS : providers).fields
         );
     }
 
-    @NotNull
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final @NotNull ObjectMapper mapper = new ObjectMapper();
 
-    @NotNull
     @Contract(pure = true)
-    private LogstashJsonLayout(@NotNull final List<Provider> providers) {
+    private @NotNull LogstashJsonLayout(final @NotNull List<? extends Provider> providers) {
         super(StandardCharsets.UTF_8);
         this.providers = providers;
     }
 
 
-    @NotNull
-    private final List<@NotNull Provider> providers;
+    private final @NotNull List<? extends Provider> providers;
 
 
-    @Override
-    @NotNull
     @Contract(pure = true)
-    public String getContentType() {
+    @Override
+    public @NotNull String getContentType() {
         return "application/json";
     }
 
-    @Override
-    @NotNull
     @Contract(pure = true)
-    public String toSerializable(@NotNull final LogEvent logEvent) {
-        @NotNull final JsonNode logMap = logEventToNode(logEvent);
+    @Override
+    public @NotNull String toSerializable(final @NotNull LogEvent logEvent) {
+        logEvent.getContextData();
+        final @NotNull JsonNode logMap = logEventToNode(logEvent);
         return logMap.toString() + '\n';
     }
 
-    @NotNull
-    private JsonNode logEventToNode(@NotNull final LogEvent logEvent) {
-        @NotNull final ObjectNode logLine = mapper.getNodeFactory().objectNode();
+    private @NotNull JsonNode logEventToNode(final @NotNull LogEvent logEvent) {
+        final @NotNull ObjectNode logLine = mapper.getNodeFactory().objectNode();
         for (final Provider provider : providers)
             provider.apply(logLine, logEvent);
         return logLine;

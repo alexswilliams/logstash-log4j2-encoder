@@ -15,12 +15,11 @@ import static io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.Ti
 import static io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.Timestamp.PATTERN_UNIX_EPOCH_MILLIS_STRING;
 
 @Plugin(name = "Pattern", category = Node.CATEGORY, elementType = "TimestampPattern")
-public class Pattern {
+public final class Pattern {
 
-    @NotNull
-    @Contract(value = "null -> fail", pure = true)
     @PluginFactory
-    public static Pattern newPattern(@PluginValue("Pattern") @Required @NotNull final String pattern) {
+    @Contract(value = "null -> fail", pure = true)
+    public static @NotNull Pattern newPattern(@Required @PluginValue("Pattern") final @NotNull String pattern) {
         Objects.requireNonNull(pattern);
         final String trimmedPattern = pattern.trim();
         if (!PATTERN_UNIX_EPOCH_MILLIS_NUMBER.equals(trimmedPattern)
@@ -30,18 +29,15 @@ public class Pattern {
         return new Pattern(trimmedPattern);
     }
 
-    @NotNull
-    private final String pattern;
+    private final @NotNull String pattern;
 
-    @NotNull
     @Contract(pure = true)
-    private Pattern(@NotNull final String pattern) {
+    private @NotNull Pattern(final @NotNull String pattern) {
         this.pattern = pattern;
     }
 
-    @NotNull
     @Contract(pure = true)
-    public String getPattern() {
+    public @NotNull String getPattern() {
         return this.pattern;
     }
 

@@ -9,27 +9,25 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 @Plugin(name = "Message", category = Node.CATEGORY, elementType = "provider")
-public class Message implements Provider {
-    @PluginFactory
+public final class Message implements Provider {
     @Contract(value = " -> new", pure = true)
-    @NotNull
-    public static Message newMessage() {
+    @PluginFactory
+    public static @NotNull Message newMessage() {
         return new Message();
     }
 
 
     @Override
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
         line.put(
                 "message",
                 event.getMessage().getFormattedMessage()
         );
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:Message";
     }
 

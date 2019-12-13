@@ -19,17 +19,16 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 @Plugin(name = "Timestamp", category = Node.CATEGORY, elementType = "provider")
-public class Timestamp implements Provider {
+public final class Timestamp implements Provider {
 
-    @PluginFactory
     @Contract(value = "_,_,_ -> new", pure = true)
-    @NotNull
-    public static Timestamp newTimestamp(
-            @PluginElement("FieldName") @Nullable final FieldName fieldName,
-            @PluginElement("TimeZone") @Nullable final TimeZone timeZone,
-            @PluginElement("TimestampPattern") @Nullable final Pattern pattern
+    @PluginFactory
+    public static @NotNull Timestamp newTimestamp(
+            @PluginElement("FieldName") final @Nullable FieldName fieldName,
+            @PluginElement("TimeZone") final @Nullable TimeZone timeZone,
+            @PluginElement("TimestampPattern") final @Nullable Pattern pattern
     ) {
-        @NotNull final Marshaller marshaller;
+        final @NotNull Marshaller marshaller;
         if (pattern == null) {
             marshaller = Marshaller.FORMATTER;
         } else if (PATTERN_UNIX_EPOCH_MILLIS_NUMBER.equals(pattern.getPattern())) {
@@ -40,7 +39,7 @@ public class Timestamp implements Provider {
             marshaller = Marshaller.FORMATTER;
         }
 
-        @NotNull final DateTimeFormatter formatter = DateTimeFormatter
+        final @NotNull DateTimeFormatter formatter = DateTimeFormatter
                 .ofPattern((marshaller == Marshaller.FORMATTER && pattern != null)
                         ? pattern.getPattern()
                         : DEFAULT_PATTERN)
@@ -70,18 +69,14 @@ public class Timestamp implements Provider {
     public static final String PATTERN_UNIX_EPOCH_MILLIS_STRING = "[UNIX_TIMESTAMP_AS_STRING]";
 
 
-    @NotNull
-    private final String fieldName;
-    @NotNull
-    private final DateTimeFormatter formatter;
-    @NotNull
-    private final Marshaller marshaller;
+    private final @NotNull String fieldName;
+    private final @NotNull DateTimeFormatter formatter;
+    private final @NotNull Marshaller marshaller;
 
     @Contract(pure = true)
-    @NotNull
-    private Timestamp(@NotNull final String fieldName,
-                      @NotNull final DateTimeFormatter formatter,
-                      @NotNull final Marshaller marshaller
+    private @NotNull Timestamp(final @NotNull String fieldName,
+                               final @NotNull DateTimeFormatter formatter,
+                               final @NotNull Marshaller marshaller
     ) {
         this.fieldName = fieldName;
         this.formatter = formatter;
@@ -90,7 +85,7 @@ public class Timestamp implements Provider {
 
     @Override
     @Contract(mutates = "param1")
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
         switch (marshaller) {
             case FORMATTER:
                 line.put(fieldName, marshalTimestampWithFormatter(event));
@@ -106,10 +101,9 @@ public class Timestamp implements Provider {
     }
 
 
-    @NotNull
     @Contract(pure = true)
-    private String marshalTimestampWithFormatter(@NotNull final LogEvent event) {
-        @NotNull final Instant instant = Instant.ofEpochSecond(
+    private @NotNull String marshalTimestampWithFormatter(final @NotNull LogEvent event) {
+        final @NotNull Instant instant = Instant.ofEpochSecond(
                 event.getInstant().getEpochSecond(),
                 event.getInstant().getNanoOfSecond()
         );
@@ -117,22 +111,20 @@ public class Timestamp implements Provider {
     }
 
     @Contract(pure = true)
-    private static long marshalTimestampAsEpochMillis(@NotNull final LogEvent event) {
+    private static long marshalTimestampAsEpochMillis(final @NotNull LogEvent event) {
         return event.getInstant().getEpochMillisecond();
     }
 
-    @NotNull
     @Contract(pure = true)
-    private static String marshalTimestampAsEpochMillisString(@NotNull final LogEvent event) {
+    private static @NotNull String marshalTimestampAsEpochMillisString(final @NotNull LogEvent event) {
         return Long.toString(marshalTimestampAsEpochMillis(event));
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:Timestamp["
-                + "marshaller=" + this.marshaller.toString() + ","
+                + "marshaller=" + this.marshaller + ","
                 + "fieldName=" + this.fieldName
                 + "]";
     }

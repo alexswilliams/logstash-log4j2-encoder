@@ -12,31 +12,29 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Plugin(name = "LogstashMarkers", category = Node.CATEGORY, elementType = "provider")
-public class LogstashMarkers implements Provider {
-    @Contract(value = " -> new", pure = true)
+public final class LogstashMarkers implements Provider {
     @PluginFactory
-    @NotNull
-    public static LogstashMarkers newLogstashMarkers() {
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull LogstashMarkers newLogstashMarkers() {
         return new LogstashMarkers();
     }
 
     @Override
     @Contract(mutates = "param1")
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
-        @Nullable final Marker marker = event.getMarker();
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
+        final @Nullable Marker marker = event.getMarker();
         if (marker instanceof LogstashMarker)
             appendMarker(line, marker);
     }
 
     @Contract(mutates = "param1")
-    private static void appendMarker(@NotNull final ObjectNode line, @NotNull final Marker marker) {
+    private static void appendMarker(final @NotNull ObjectNode line, final @NotNull Marker marker) {
         // TODO
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:LogstashMarkers";
     }
 

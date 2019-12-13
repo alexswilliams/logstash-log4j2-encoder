@@ -12,29 +12,25 @@ import java.time.ZoneId;
 import java.util.Objects;
 
 @Plugin(name = "TimeZone", category = Node.CATEGORY)
-public class TimeZone {
+public final class TimeZone {
 
-    @NotNull
-    @Contract(value = "null -> fail", pure = true)
     @PluginFactory
-    public static TimeZone newTimeZone(@PluginValue("TimeZone") @Required @NotNull final String timeZone) {
+    @Contract(value = "null -> fail", pure = true)
+    public static @NotNull TimeZone newTimeZone(@Required @PluginValue("TimeZone") final @NotNull String timeZone) {
         Objects.requireNonNull(timeZone);
         final ZoneId zoneId = ZoneId.of(timeZone.trim());
         return new TimeZone(zoneId);
     }
 
-    @NotNull
-    private final ZoneId timeZone;
+    private final @NotNull ZoneId timeZone;
 
     @Contract(pure = true)
-    @NotNull
-    private TimeZone(@NotNull final ZoneId timeZone) {
+    private @NotNull TimeZone(final @NotNull ZoneId timeZone) {
         this.timeZone = timeZone;
     }
 
-    @NotNull
     @Contract(pure = true)
-    public ZoneId getTimeZone() {
+    public @NotNull ZoneId getTimeZone() {
         return this.timeZone;
     }
 

@@ -10,28 +10,26 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Plugin(name = "StackTrace", category = Node.CATEGORY, elementType = "provider")
-public class StackTrace implements Provider {
-    @PluginFactory
+public final class StackTrace implements Provider {
     @Contract(value = " -> new", pure = true)
-    @NotNull
-    public static StackTrace newStackTrace() {
+    @PluginFactory
+    public static @NotNull StackTrace newStackTrace() {
         return new StackTrace();
     }
 
-    @NotNull
     @Contract(pure = true)
-    private static String marshalStackTrace(@NotNull final Throwable throwable) {
-        final StringBuilder builder = new StringBuilder();
+    private static @NotNull String marshalStackTrace(final @NotNull Throwable throwable) {
+        final StringBuilder builder = new StringBuilder(throwable.getStackTrace().length * 100);
         for (final StackTraceElement line : throwable.getStackTrace()) {
-            builder.append(line.toString()).append('\n');
+            builder.append(line).append('\n');
         }
         return builder.toString();
     }
 
     @Override
     @Contract(mutates = "param1")
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
-        @Nullable final Throwable thrown = event.getThrown();
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
+        final @Nullable Throwable thrown = event.getThrown();
         if (thrown != null)
             line.put(
                     "stack_trace",
@@ -39,10 +37,9 @@ public class StackTrace implements Provider {
             );
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:StackTrace";
     }
 

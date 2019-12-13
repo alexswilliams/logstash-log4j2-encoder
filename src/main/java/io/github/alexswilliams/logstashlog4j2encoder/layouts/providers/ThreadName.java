@@ -10,19 +10,18 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Plugin(name = "ThreadName", category = Node.CATEGORY, elementType = "provider")
-public class ThreadName implements Provider {
-    @PluginFactory
+public final class ThreadName implements Provider {
     @Contract(value = " -> new", pure = true)
-    @NotNull
-    public static ThreadName newThreadName() {
+    @PluginFactory
+    public static @NotNull ThreadName newThreadName() {
         return new ThreadName();
     }
 
 
     @Override
     @Contract(mutates = "param1")
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
-        @Nullable final String threadName = event.getThreadName();
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
+        final @Nullable String threadName = event.getThreadName();
         if (threadName != null)
             line.put(
                     "thread_name",
@@ -30,10 +29,9 @@ public class ThreadName implements Provider {
             );
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:ThreadName";
     }
 

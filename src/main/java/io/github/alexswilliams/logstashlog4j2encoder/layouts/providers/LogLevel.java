@@ -9,28 +9,26 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 @Plugin(name = "LogLevel", category = Node.CATEGORY, elementType = "provider")
-public class LogLevel implements Provider {
-    @PluginFactory
+public final class LogLevel implements Provider {
     @Contract(value = " -> new", pure = true)
-    @NotNull
-    public static LogLevel newLogLevel() {
+    @PluginFactory
+    public static @NotNull LogLevel newLogLevel() {
         return new LogLevel();
     }
 
 
     @Override
     @Contract(mutates = "param1")
-    public void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event) {
+    public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
         line.put(
                 "level",
                 event.getLevel().toString()
         );
     }
 
-    @Override
     @Contract(pure = true)
-    @NotNull
-    public String toString() {
+    @Override
+    public @NotNull String toString() {
         return "Provider:LogLevel";
     }
 

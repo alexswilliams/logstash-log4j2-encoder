@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 @FunctionalInterface
 public interface Provider {
     @Contract(mutates = "param1")
-    void apply(@NotNull final ObjectNode line, @NotNull final LogEvent event);
+    void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event);
 
     @NotNull
-    Provider[] DEFAULT_PROVIDER_LIST = new Provider[]{
+    Provider[] DEFAULT_PROVIDER_LIST = {
             Message.newMessage(),
             LogLevel.newLogLevel(),
             StackTrace.newStackTrace(),
