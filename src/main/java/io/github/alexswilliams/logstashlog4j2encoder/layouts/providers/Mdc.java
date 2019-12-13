@@ -11,7 +11,6 @@ import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.MDC;
 
 import java.util.Collections;
 import java.util.Map;
@@ -47,7 +46,7 @@ public final class Mdc implements Provider {
     @Override
     @Contract(mutates = "param1")
     public void apply(final @NotNull ObjectNode line, final @NotNull LogEvent event) {
-        final @Nullable Map<@NotNull String, @Nullable String> contextMap = MDC.getCopyOfContextMap();
+        final @Nullable Map<@NotNull String, @Nullable String> contextMap = event.getContextData().toMap();
         if (contextMap == null)
             return;
 
