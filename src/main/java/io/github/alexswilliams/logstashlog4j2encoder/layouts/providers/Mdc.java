@@ -12,9 +12,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Plugin(name = "Mdc", category = Node.CATEGORY, elementType = "provider")
 public final class Mdc implements Provider {
@@ -50,13 +48,12 @@ public final class Mdc implements Provider {
         if (contextMap == null)
             return;
 
-        final Set<String> keyNames = contextMap.keySet();
+        final Collection<String> keyNames = new HashSet<>(contextMap.keySet());
         keyNames.removeAll(excludedKeyNames);
         if (!includedKeyNames.isEmpty()) {
             keyNames.retainAll(includedKeyNames);
         }
 
-        //noinspection KeySetIterationMayUseEntrySet
         keyNames.forEach(key -> line.put(key, contextMap.get(key)));
     }
 
