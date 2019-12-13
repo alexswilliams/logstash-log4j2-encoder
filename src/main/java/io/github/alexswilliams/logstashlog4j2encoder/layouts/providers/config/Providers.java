@@ -32,7 +32,7 @@ public class Providers {
         return new Providers.Builder<B>().asBuilder();
     }
 
-    public static class Builder<B extends Providers.Builder<B>>
+    static class Builder<B extends Providers.Builder<B>>
             extends AbstractStringLayout.Builder<B>
             implements org.apache.logging.log4j.core.util.Builder<Providers> {
 
@@ -44,7 +44,7 @@ public class Providers {
 
         @NotNull
         @Contract(value = "_ -> this", mutates = "this")
-        public B setProviders(final Provider[] providers) {
+        B setProviders(final Provider[] providers) {
             this.providers = providers;
             logger.debug("Setting up Logstash JSON logger with following fields: " + Arrays.asList(providers).toString());
 

@@ -6,7 +6,7 @@
 
     <groupId>io.github.alexswilliams</groupId>
     <artifactId>logstash-log4j2-encoder</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Logstash Encoder for Log4j2</name>

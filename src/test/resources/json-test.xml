@@ -13,6 +13,10 @@
                         <Pattern>[UNIX_TIMESTAMP_AS_NUMBER]</Pattern>
                     </Timestamp>
                     <LogstashMarkers/>
+                    <Mdc>
+                        <IncludeMdcKeyNames>SomeKey, OtherKey</IncludeMdcKeyNames>
+                        <ExcludeMdcKeyNames>OtherKey</ExcludeMdcKeyNames>
+                    </Mdc>
                 </Providers>
             </LogstashJsonLayout>
         </Console>
