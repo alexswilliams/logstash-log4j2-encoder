@@ -8,15 +8,12 @@ import org.apache.logging.log4j.core.config.plugins.validation.constraints.Requi
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 @Plugin(name = "FieldName", category = Node.CATEGORY)
 public final class FieldName {
 
     @PluginFactory
     @Contract(value = "null -> fail", pure = true)
     public static @NotNull FieldName newFieldName(@Required @PluginValue("FieldName") final @NotNull String fieldName) {
-        Objects.requireNonNull(fieldName);
         if (fieldName.trim().isEmpty()) throw new IllegalArgumentException("FieldName cannot be blank");
         return new FieldName(fieldName.trim());
     }

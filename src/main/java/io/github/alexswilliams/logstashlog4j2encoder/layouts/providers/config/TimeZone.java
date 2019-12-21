@@ -9,7 +9,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.ZoneId;
-import java.util.Objects;
 
 @Plugin(name = "TimeZone", category = Node.CATEGORY)
 public final class TimeZone {
@@ -17,7 +16,6 @@ public final class TimeZone {
     @PluginFactory
     @Contract(value = "null -> fail", pure = true)
     public static @NotNull TimeZone newTimeZone(@Required @PluginValue("TimeZone") final @NotNull String timeZone) {
-        Objects.requireNonNull(timeZone);
         final ZoneId zoneId = ZoneId.of(timeZone.trim());
         return new TimeZone(zoneId);
     }
