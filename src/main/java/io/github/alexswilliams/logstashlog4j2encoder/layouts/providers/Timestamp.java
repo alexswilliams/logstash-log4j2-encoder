@@ -62,8 +62,8 @@ public final class Timestamp implements Provider {
         EPOCH_MILLIS_STRING
     }
 
-    static final String DEFAULT_FIELD_NAME = "@timestamp";
-    private static final String DEFAULT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+    private static final String DEFAULT_FIELD_NAME = "@timestamp";
+    private static final String DEFAULT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
     private static final ZoneId DEFAULT_TIME_ZONE = ZoneOffset.UTC;
     public static final String PATTERN_UNIX_EPOCH_MILLIS_NUMBER = "[UNIX_TIMESTAMP_AS_NUMBER]";
     public static final String PATTERN_UNIX_EPOCH_MILLIS_STRING = "[UNIX_TIMESTAMP_AS_STRING]";

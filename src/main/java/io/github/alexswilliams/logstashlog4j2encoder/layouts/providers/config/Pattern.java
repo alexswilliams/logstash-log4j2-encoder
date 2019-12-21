@@ -9,7 +9,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 import static io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.Timestamp.PATTERN_UNIX_EPOCH_MILLIS_NUMBER;
 import static io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.Timestamp.PATTERN_UNIX_EPOCH_MILLIS_STRING;
@@ -20,8 +19,10 @@ public final class Pattern {
     @PluginFactory
     @Contract(value = "null -> fail", pure = true)
     public static @NotNull Pattern newPattern(@Required @PluginValue("Pattern") final @NotNull String pattern) {
-        Objects.requireNonNull(pattern);
         final String trimmedPattern = pattern.trim();
+        if (trimmedPattern.isEmpty()) {
+            throw new RuntimeException("Cannot accept empty timestamp pattern");
+        }
         if (!PATTERN_UNIX_EPOCH_MILLIS_NUMBER.equals(trimmedPattern)
                 && !PATTERN_UNIX_EPOCH_MILLIS_STRING.equals(trimmedPattern)) {
             DateTimeFormatter.ofPattern(trimmedPattern);
