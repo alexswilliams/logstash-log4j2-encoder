@@ -1,17 +1,16 @@
 package io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored", "ObviousNullCheck", "ConstantConditions"})
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class FieldNameTest {
 
     @Nested
     class given_null_field_name {
         @Test
         public void fieldname_is_not_constructed() {
-            Assertions.assertThrows(IllegalArgumentException.class, () -> FieldName.newFieldName(null));
+            Assertions.assertThrows(Exception.class, () -> FieldName.newFieldName(null));
         }
     }
 

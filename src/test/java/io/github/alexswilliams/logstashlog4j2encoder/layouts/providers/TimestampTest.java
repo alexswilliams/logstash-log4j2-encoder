@@ -10,15 +10,14 @@ import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.Ti
 import org.apache.logging.log4j.core.LogEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.*;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class TimestampTest {
 
     private static final JsonNodeCreator nodeFactory = new JsonNodeFactory(false);

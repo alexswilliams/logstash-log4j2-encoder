@@ -1,19 +1,18 @@
 package io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.time.DateTimeException;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored", "ObviousNullCheck", "ConstantConditions"})
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class TimeZoneTest {
 
     @Nested
     class given_null_time_zone {
         @Test
         public void timezone_is_not_constructed() {
-            Assertions.assertThrows(IllegalArgumentException.class, () -> TimeZone.newTimeZone(null));
+            Assertions.assertThrows(Exception.class, () -> TimeZone.newTimeZone(null));
         }
     }
 

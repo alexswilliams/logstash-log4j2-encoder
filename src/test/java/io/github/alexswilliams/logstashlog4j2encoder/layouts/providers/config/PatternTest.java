@@ -7,13 +7,14 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @SuppressWarnings({"ResultOfMethodCallIgnored", "ObviousNullCheck", "ConstantConditions"})
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class PatternTest {
 
     @Nested
     class given_null_format {
         @Test
         public void pattern_is_not_constructed() {
-            Assertions.assertThrows(IllegalArgumentException.class, () -> Pattern.newPattern(null));
+            Assertions.assertThrows(Exception.class, () -> Pattern.newPattern(null));
         }
     }
 
