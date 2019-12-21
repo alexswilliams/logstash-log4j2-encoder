@@ -30,8 +30,8 @@
         <connection>scm:git:git://github.com/alexswilliams/logstash-log4j2-encoder.git</connection>
         <developerConnection>scm:git:https://github.com/alexswilliams/logstash-log4j2-encoder.git</developerConnection>
         <url>https://github.com/alexswilliams/logstash-log4j2-encoder/tree/master</url>
-      <tag>logstash-log4j2-encoder-0.0.2</tag>
-  </scm>
+        <tag>logstash-log4j2-encoder-0.0.2</tag>
+    </scm>
 
     <properties>
         <java.version>1.8</java.version>
@@ -42,6 +42,7 @@
         <slf4j.version>1.7.29</slf4j.version>
 
         <junit.jupiter.version>5.5.2</junit.jupiter.version>
+        <mockitoCore.version>3.2.4</mockitoCore.version>
 
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -94,6 +95,12 @@
             <version>${log4j2.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockitoCore.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 
@@ -121,6 +128,11 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>
