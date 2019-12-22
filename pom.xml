@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.alexswilliams</groupId>
@@ -47,7 +48,8 @@
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <soatype.nexus.version>1.6.8</soatype.nexus.version>
+        <sonatype.nexus.version>1.6.8</sonatype.nexus.version>
+        <maven.surefire.version>2.22.2</maven.surefire.version>
         <maven.source.version>3.1.0</maven.source.version>
         <maven.javadoc.version>3.1.1</maven.javadoc.version>
         <maven.gpg.version>1.6</maven.gpg.version>
@@ -132,7 +134,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <failIfNoTests>true</failIfNoTests>
+                    <parallel>all</parallel>
+                    <trimStackTrace>false</trimStackTrace>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -156,7 +163,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${soatype.nexus.version}</version>
+                        <version>${sonatype.nexus.version}</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -181,6 +188,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven.javadoc.version}</version>
+                        <configuration>
+                            <show>private</show>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>

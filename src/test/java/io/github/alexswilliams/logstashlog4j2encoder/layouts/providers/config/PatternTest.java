@@ -47,7 +47,7 @@ class PatternTest {
         }
 
         @TestFactory
-        public Collection<DynamicTest> test() {
+        public Collection<DynamicTest> trimmed_value_provided() {
             return Arrays.stream(new TestScenario[]{
                     new TestScenario("DateTimeFormatter Pattern", "yyyy-MM-dd'T'HH:mm:ss.SSS"),
                     new TestScenario("DateTimeFormatter Pattern with whitespace", "  yyyy-MM-dd'T'HH:mm:ss.SSS  "),

@@ -145,7 +145,7 @@ class TimestampTest {
         }
     }
 
-    private @NotNull JsonNode runTestWithParams(
+    private static @NotNull JsonNode runTestWithParams(
             final @NotNull Instant instant,
             final @Nullable String fieldName,
             final @Nullable String zone,
@@ -170,10 +170,10 @@ class TimestampTest {
     }
 
 
-    private static class Log4j2Instant implements org.apache.logging.log4j.core.time.Instant {
+    private static final class Log4j2Instant implements org.apache.logging.log4j.core.time.Instant {
         private final Instant instant;
 
-        public Log4j2Instant(final Instant instant) {this.instant = instant;}
+        private Log4j2Instant(final Instant instant) {this.instant = instant;}
 
         @Override
         public long getEpochSecond() {

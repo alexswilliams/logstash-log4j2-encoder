@@ -18,6 +18,28 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Provides a timestamp field in the JSON object.
+ * <p>
+ * The default field name is <code>{@value #DEFAULT_FIELD_NAME}</code>.
+ * <p>
+ * The default date format is specified such that a lexicographic sort on timestamp will produce logs ordered by
+ * event instant, regardless of timezone.
+ * <p>
+ * Pattern also recognises two special, unambiguous strings (<code>{@value #PATTERN_UNIX_EPOCH_MILLIS_STRING}</code> and
+ * <code>{@value #PATTERN_UNIX_EPOCH_MILLIS_NUMBER}</code>) for representations of epoch milliseconds.
+ * <p>
+ * The following XML fragments are equivalent:
+ * <pre>{@code
+ * <Timestamp>
+ *   <FieldName>@timestamp</FieldName>
+ *   <TimeZone>UTC</TimeZone>
+ *   <Pattern>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</Pattern>
+ * </Timestamp>}</pre>
+ * and
+ * <pre>{@code
+ * <Timestamp/>}</pre>
+ */
 @Plugin(name = "Timestamp", category = Node.CATEGORY, elementType = "provider")
 public final class Timestamp implements Provider {
 

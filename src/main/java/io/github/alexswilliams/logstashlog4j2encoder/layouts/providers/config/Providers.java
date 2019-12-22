@@ -14,6 +14,30 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Configures the encoder with a (plug-able) set of field providers.  Each provider is given the option to add any
+ * fields it deems are appropriate for a given log message.
+ * <p>
+ * In the absence of the {@code <Providers/>} node, a standard list of providers is configured from an
+ * opinionated default ({@link Provider#DEFAULT_PROVIDER_LIST}) that aims to provide something that might be useful
+ * out of the box.
+ * <p>
+ * The encoder can be configured with XML as follows:
+ * <pre>{@code
+ *   <Providers>
+ *       <Message/>
+ *       <Timestamp>
+ *           <FieldName>time</FieldName>
+ *       </Timestamp>
+ *       <LogLevel/>
+ *       ...
+ * }</pre>
+ * <p>
+ * Each provider can optionally take parameters, which themselves can take parameters.  The specifics of each are
+ * detailed within the relevant provider implementation.
+ *
+ * @see Provider
+ */
 @Plugin(name = "providers", category = Node.CATEGORY)
 public final class Providers {
 

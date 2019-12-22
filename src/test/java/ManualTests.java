@@ -8,7 +8,7 @@ class ManualTests {
     @Test
     void TestIt() {
         System.setProperty("log4j2.debug", "true");
-        System.setProperty("log4j2.configurationFile", "classpath:json-test.xml");
+        System.setProperty("log4j.configurationFile", "classpath:json-test.xml");
         final Logger logger = LoggerFactory.getLogger(this.getClass());
 
         MDC.put("SomeKey", "SomeValue");
