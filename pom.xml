@@ -54,6 +54,7 @@
         <maven.javadoc.version>3.1.1</maven.javadoc.version>
         <maven.gpg.version>1.6</maven.gpg.version>
         <maven.release.version>2.5.3</maven.release.version>
+        <owasp.version>5.2.4</owasp.version>
     </properties>
 
     <dependencies>
@@ -140,6 +141,22 @@
                     <parallel>all</parallel>
                     <trimStackTrace>false</trimStackTrace>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${owasp.version}</version>
+                <configuration>
+                    <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
