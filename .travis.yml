@@ -3,4 +3,7 @@ language: java
 jdk:
   - openjdk8
   - openjdk11
-script: ./mvnw clean test
+script: ./mvnw clean verify
+cache:
+  directories:
+    - $HOME/.m2
