@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public final class ExcludeMdcKeyNames {
 
     @PluginFactory
-    @Contract(value = "null -> fail", pure = true)
+    @Contract(pure = true)
     public static @NotNull ExcludeMdcKeyNames newExcludeMdcKeyNames(@Required @PluginValue("ExcludeMdcKeyNames") final @NotNull String keyNames) {
         Objects.requireNonNull(keyNames);
         final Set<String> keys = Arrays.stream(keyNames.split(","))

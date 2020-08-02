@@ -14,7 +14,7 @@ import java.time.ZoneId;
 public final class TimeZone {
 
     @PluginFactory
-    @Contract(value = "null -> fail", pure = true)
+    @Contract(pure = true)
     public static @NotNull TimeZone newTimeZone(@Required @PluginValue("TimeZone") final @NotNull String timeZone) {
         final ZoneId zoneId = ZoneId.of(timeZone.trim());
         return new TimeZone(zoneId);

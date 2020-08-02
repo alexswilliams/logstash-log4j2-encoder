@@ -45,14 +45,12 @@ public final class Providers {
             .setProviders(Provider.DEFAULT_PROVIDER_LIST)
             .build();
 
-    @SuppressWarnings("WeakerAccess")
     @PluginBuilderFactory
     @Contract(value = " -> new", pure = true)
     public static <B extends Providers.Builder<B>> B newBuilder() {
         return new Providers.Builder<B>().asBuilder();
     }
 
-    @SuppressWarnings("ClassNameSameAsAncestorName")
     static class Builder<B extends Providers.Builder<B>>
             extends AbstractStringLayout.Builder<B>
             implements org.apache.logging.log4j.core.util.Builder<Providers> {

@@ -2,7 +2,7 @@ package io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config;
 
 import org.junit.jupiter.api.*;
 
-@SuppressWarnings({"ResultOfMethodCallIgnored", "ObviousNullCheck", "ConstantConditions"})
+@SuppressWarnings({"ResultOfMethodCallIgnored", "ConstantConditions"})
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class FieldNameTest {
 

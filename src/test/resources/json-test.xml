@@ -10,7 +10,7 @@
                     <StackTrace/>
                     <ThreadName/>
                     <Timestamp>
-                        <Pattern>[UNIX_TIMESTAMP_AS_NUMBER]</Pattern>
+                        <TimestampPattern>[UNIX_TIMESTAMP_AS_NUMBER]</TimestampPattern>
                     </Timestamp>
                     <LogstashMarkers/>
                     <Mdc>
