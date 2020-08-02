@@ -6,15 +6,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@SuppressWarnings({"ResultOfMethodCallIgnored", "ObviousNullCheck", "ConstantConditions"})
+@SuppressWarnings({"ResultOfMethodCallIgnored", "ConstantConditions"})
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class PatternTest {
+class TimestampPatternTest {
 
     @Nested
     class given_null_format {
         @Test
         public void pattern_is_not_constructed() {
-            Assertions.assertThrows(Exception.class, () -> Pattern.newPattern(null));
+            Assertions.assertThrows(Exception.class, () -> TimestampPattern.newPattern(null));
         }
     }
 
@@ -22,7 +22,7 @@ class PatternTest {
     class given_empty_format {
         @Test
         public void pattern_is_not_constructed() {
-            Assertions.assertThrows(Exception.class, () -> Pattern.newPattern(""));
+            Assertions.assertThrows(Exception.class, () -> TimestampPattern.newPattern(""));
         }
     }
 
@@ -30,7 +30,7 @@ class PatternTest {
     class given_blank_format {
         @Test
         public void pattern_is_not_constructed() {
-            Assertions.assertThrows(Exception.class, () -> Pattern.newPattern("   "));
+            Assertions.assertThrows(Exception.class, () -> TimestampPattern.newPattern("   "));
         }
     }
 
@@ -56,8 +56,8 @@ class PatternTest {
                     new TestScenario("EpochMillis as Number", "[UNIX_TIMESTAMP_AS_NUMBER]"),
                     new TestScenario("EpochMillis as Number with whitespace", "  [UNIX_TIMESTAMP_AS_NUMBER]  ")
             }).map(scenario -> DynamicTest.dynamicTest(scenario.name, () -> {
-                final Pattern pattern = Pattern.newPattern(scenario.format);
-                Assertions.assertEquals(scenario.format.trim(), pattern.getPattern());
+                final TimestampPattern timestampPattern = TimestampPattern.newPattern(scenario.format);
+                Assertions.assertEquals(scenario.format.trim(), timestampPattern.getPattern());
             })).collect(Collectors.toList());
         }
     }
@@ -68,7 +68,7 @@ class PatternTest {
 
         @Test
         public void pattern_is_not_constructed() {
-            Assertions.assertThrows(IllegalArgumentException.class, () -> Pattern.newPattern(format));
+            Assertions.assertThrows(IllegalArgumentException.class, () -> TimestampPattern.newPattern(format));
         }
     }
 

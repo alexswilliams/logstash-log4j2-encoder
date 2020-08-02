@@ -2,8 +2,8 @@ package io.github.alexswilliams.logstashlog4j2encoder.layouts.providers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.FieldName;
-import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.Pattern;
 import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.TimeZone;
+import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.TimestampPattern;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.config.Node;
 import org.apache.logging.log4j.core.config.plugins.Plugin;
@@ -34,7 +34,7 @@ import java.time.format.DateTimeFormatter;
  * <Timestamp>
  *   <FieldName>@timestamp</FieldName>
  *   <TimeZone>UTC</TimeZone>
- *   <Pattern>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</Pattern>
+ *   <Pattern>yyyy-MM-dd'T'HH:mm:ss.SSSZZ</Pattern>
  * </Timestamp>}</pre>
  * and
  * <pre>{@code
@@ -48,22 +48,22 @@ public final class Timestamp implements Provider {
     public static @NotNull Timestamp newTimestamp(
             @PluginElement("FieldName") final @Nullable FieldName fieldName,
             @PluginElement("TimeZone") final @Nullable TimeZone timeZone,
-            @PluginElement("TimestampPattern") final @Nullable Pattern pattern
+            @PluginElement("TimestampPattern") final @Nullable TimestampPattern timestampPattern
     ) {
         final @NotNull Marshaller marshaller;
-        if (pattern == null) {
+        if (timestampPattern == null) {
             marshaller = Marshaller.FORMATTER;
-        } else if (PATTERN_UNIX_EPOCH_MILLIS_NUMBER.equals(pattern.getPattern())) {
+        } else if (PATTERN_UNIX_EPOCH_MILLIS_NUMBER.equals(timestampPattern.getPattern())) {
             marshaller = Marshaller.EPOCH_MILLIS_NUMBER;
-        } else if (PATTERN_UNIX_EPOCH_MILLIS_STRING.equals(pattern.getPattern())) {
+        } else if (PATTERN_UNIX_EPOCH_MILLIS_STRING.equals(timestampPattern.getPattern())) {
             marshaller = Marshaller.EPOCH_MILLIS_STRING;
         } else {
             marshaller = Marshaller.FORMATTER;
         }
 
         final @NotNull DateTimeFormatter formatter = DateTimeFormatter
-                .ofPattern((marshaller == Marshaller.FORMATTER && pattern != null)
-                        ? pattern.getPattern()
+                .ofPattern((marshaller == Marshaller.FORMATTER && timestampPattern != null)
+                        ? timestampPattern.getPattern()
                         : DEFAULT_PATTERN)
                 .withZone((timeZone == null)
                         ? DEFAULT_TIME_ZONE
@@ -85,7 +85,7 @@ public final class Timestamp implements Provider {
     }
 
     private static final String DEFAULT_FIELD_NAME = "@timestamp";
-    private static final String DEFAULT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+    private static final String DEFAULT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSxxx";
     private static final ZoneId DEFAULT_TIME_ZONE = ZoneOffset.UTC;
     public static final String PATTERN_UNIX_EPOCH_MILLIS_NUMBER = "[UNIX_TIMESTAMP_AS_NUMBER]";
     public static final String PATTERN_UNIX_EPOCH_MILLIS_STRING = "[UNIX_TIMESTAMP_AS_STRING]";

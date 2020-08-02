@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public final class FieldName {
 
     @PluginFactory
-    @Contract(value = "null -> fail", pure = true)
+    @Contract(pure = true)
     public static @NotNull FieldName newFieldName(@Required @PluginValue("FieldName") final @NotNull String fieldName) {
         if (fieldName.trim().isEmpty()) throw new IllegalArgumentException("FieldName cannot be blank");
         return new FieldName(fieldName.trim());

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.FieldName;
-import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.Pattern;
+import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.TimestampPattern;
 import io.github.alexswilliams.logstashlog4j2encoder.layouts.providers.config.TimeZone;
 import org.apache.logging.log4j.core.LogEvent;
 import org.jetbrains.annotations.NotNull;
@@ -31,10 +31,10 @@ class TimestampTest {
 
         @Nested
         class when_no_specified_timezone {
-            private static final String expected = "2019-05-06T09:10:11.987Z";
+            private static final String expected = "2019-05-06T09:10:11.987+00:00";
 
             @Test
-            public void default_timestamp_is_iso_format_with_millisecond_precision_and_z_for_zone_offset() {
+            public void default_timestamp_is_iso_format_with_millisecond_precision_and_hh_mm_for_zone_offset() {
                 final JsonNode node = runTestWithParams(instant, null, null, null);
                 Assertions.assertEquals(expected, node.textValue());
             }
@@ -67,7 +67,7 @@ class TimestampTest {
         @Nested
         class and_a_non_default_field_name {
             private static final String fieldName = "some other field name";
-            private static final String expectedValue = "2019-05-06T09:10:11.987Z";
+            private static final String expectedValue = "2019-05-06T09:10:11.987+00:00";
 
             @Test
             public void timestamp_assigned_to_different_field_name() {
@@ -127,16 +127,32 @@ class TimestampTest {
     class given_the_new_year_stars_half_way_through_the_week {
 
         @Nested
-        class when_now_is_the_beginning_of_that_week {
-
-            private static final String nowAsIsoString = "2019-12-30";
+        class when_now_is_before_new_year {
+            private static final String nowAsIsoString = "2019-12-31";
             private final Instant now = LocalDate
-                    .of(2019, Month.DECEMBER, 30)
+                    .of(2019, Month.DECEMBER, 31)
                     .atStartOfDay()
                     .toInstant(ZoneOffset.UTC);
 
             @Test
             public void then_the_default_format_shows_the_old_year() {
+                final JsonNode node = runTestWithParams(now, null, null, null);
+
+                final String actualDatePart = node.textValue().split("T")[0];
+                Assertions.assertEquals(nowAsIsoString, actualDatePart);
+            }
+        }
+
+        @Nested
+        class when_now_is_after_new_year {
+            private static final String nowAsIsoString = "2020-01-01";
+            private final Instant now = LocalDate
+                    .of(2020, Month.JANUARY, 1)
+                    .atStartOfDay()
+                    .toInstant(ZoneOffset.UTC);
+
+            @Test
+            public void then_the_default_format_shows_the_new_year() {
                 final JsonNode node = runTestWithParams(now, null, null, null);
 
                 final String actualDatePart = node.textValue().split("T")[0];
@@ -155,7 +171,7 @@ class TimestampTest {
                 Timestamp.newTimestamp(
                         fieldName == null ? null : FieldName.newFieldName(fieldName),
                         zone == null ? null : TimeZone.newTimeZone(zone),
-                        pattern == null ? null : Pattern.newPattern(pattern)
+                        pattern == null ? null : TimestampPattern.newPattern(pattern)
                 );
         final ObjectNode outputJsonNode = nodeFactory.objectNode();
         final LogEvent inputEvent = mock(LogEvent.class);

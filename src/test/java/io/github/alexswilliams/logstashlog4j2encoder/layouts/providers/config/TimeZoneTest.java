@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 
 import java.time.DateTimeException;
 
-@SuppressWarnings({"ResultOfMethodCallIgnored", "ObviousNullCheck", "ConstantConditions"})
+@SuppressWarnings({"ResultOfMethodCallIgnored", "ConstantConditions"})
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class TimeZoneTest {
 

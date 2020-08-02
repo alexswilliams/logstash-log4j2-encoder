@@ -27,7 +27,7 @@ public interface Provider {
             Message.newMessage(null),
             LogLevel.newLogLevel(null),
             StackTrace.newStackTrace(),
-            LoggerName.newLoggerName(),
+            LoggerName.newLoggerName(null),
             Timestamp.newTimestamp(null, null, null)
     };
 }
