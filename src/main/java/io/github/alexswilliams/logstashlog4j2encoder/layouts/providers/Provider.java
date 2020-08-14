@@ -26,7 +26,7 @@ public interface Provider {
     Provider[] DEFAULT_PROVIDER_LIST = {
             Message.newMessage(null),
             LogLevel.newLogLevel(null),
-            StackTrace.newStackTrace(),
+            StackTrace.newStackTrace(null),
             LoggerName.newLoggerName(null),
             Timestamp.newTimestamp(null, null, null)
     };
