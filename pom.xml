@@ -4,7 +4,7 @@
 
     <groupId>io.github.alexswilliams</groupId>
     <artifactId>logstash-log4j2-encoder</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Logstash Encoder for Log4j2</name>
@@ -30,7 +30,7 @@
         <connection>scm:git:git://github.com/alexswilliams/logstash-log4j2-encoder.git</connection>
         <developerConnection>scm:git:https://github.com/alexswilliams/logstash-log4j2-encoder.git</developerConnection>
         <url>https://github.com/alexswilliams/logstash-log4j2-encoder/tree/master</url>
-        <tag>logstash-log4j2-encoder-0.0.3</tag>
+        <tag>logstash-log4j2-encoder-0.0.2</tag>
     </scm>
 
     <properties>
