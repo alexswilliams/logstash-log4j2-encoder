@@ -27,8 +27,8 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/alexswilliams/logstash-log4j2-encoder.git</connection>
-        <developerConnection>scm:git:https://github.com/alexswilliams/logstash-log4j2-encoder.git</developerConnection>
+        <connection>scm:git:git@github.com:alexswilliams/logstash-log4j2-encoder.git</connection>
+        <developerConnection>scm:git:git@github.com:alexswilliams/logstash-log4j2-encoder.git</developerConnection>
         <url>https://github.com/alexswilliams/logstash-log4j2-encoder/tree/master</url>
     </scm>
 
