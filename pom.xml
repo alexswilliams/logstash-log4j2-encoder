@@ -4,7 +4,7 @@
 
     <groupId>io.github.alexswilliams</groupId>
     <artifactId>logstash-log4j2-encoder</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Logstash Encoder for Log4j2</name>
@@ -30,19 +30,18 @@
         <connection>scm:git:git://github.com/alexswilliams/logstash-log4j2-encoder.git</connection>
         <developerConnection>scm:git:https://github.com/alexswilliams/logstash-log4j2-encoder.git</developerConnection>
         <url>https://github.com/alexswilliams/logstash-log4j2-encoder/tree/master</url>
-        <tag>logstash-log4j2-encoder-0.0.2</tag>
     </scm>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <jackson.version>2.11.1</jackson.version>
+        <jackson.version>2.13.0</jackson.version>
         <log4j2.version>2.15.0</log4j2.version>
-        <slf4j.version>1.7.30</slf4j.version>
+        <slf4j.version>1.7.32</slf4j.version>
 
-        <junit.jupiter.version>5.6.2</junit.jupiter.version>
-        <mockitoCore.version>3.4.6</mockitoCore.version>
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <mockitoCore.version>4.1.0</mockitoCore.version>
 
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -50,10 +49,10 @@
         <sonatype.nexus.version>1.6.8</sonatype.nexus.version>
         <maven.surefire.version>2.22.2</maven.surefire.version>
         <maven.source.version>3.2.1</maven.source.version>
-        <maven.javadoc.version>3.2.0</maven.javadoc.version>
+        <maven.javadoc.version>3.3.0</maven.javadoc.version>
         <maven.gpg.version>1.6</maven.gpg.version>
         <maven.release.version>2.5.3</maven.release.version>
-        <owasp.version>5.3.2</owasp.version>
+        <owasp.version>6.5.0</owasp.version>
     </properties>
 
     <dependencies>
@@ -61,11 +60,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j2.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -80,7 +74,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>19.0.0</version>
+            <version>22.0.0</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
