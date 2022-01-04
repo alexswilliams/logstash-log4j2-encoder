@@ -19,4 +19,6 @@
 
   ./mvnw -Prelease release:perform
 
+  git push && git push --tags
+
 )
