@@ -40,10 +40,10 @@
 
         <jackson.version>2.13.1</jackson.version>
         <log4j2.version>2.17.1</log4j2.version>
-        <slf4j.version>1.7.32</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
 
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <mockitoCore.version>4.2.0</mockitoCore.version>
+        <mockitoCore.version>4.3.1</mockitoCore.version>
         <jetbrains.annotations.version>23.0.0</jetbrains.annotations.version>
 
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -59,7 +59,7 @@
         <maven.release.version>3.0.0-M4</maven.release.version>
         <maven.enforcer.version>3.0.0</maven.enforcer.version>
         <buildhelper.version>3.2.0</buildhelper.version>
-        <owasp.version>6.5.2</owasp.version>
+        <owasp.version>6.5.3</owasp.version>
     </properties>
 
     <dependencies>
@@ -172,6 +172,11 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>${buildhelper.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-wrapper-plugin</artifactId>
+                <version>3.1.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
