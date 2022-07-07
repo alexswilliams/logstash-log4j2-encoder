@@ -36,30 +36,30 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.minimum.version>[3.1.1,)</maven.minimum.version>
+        <maven.minimum.version>[3.3,)</maven.minimum.version>
 
-        <jackson.version>2.13.1</jackson.version>
-        <log4j2.version>2.17.1</log4j2.version>
+        <jackson.version>2.13.3</jackson.version>
+        <log4j2.version>2.18.0</log4j2.version>
         <slf4j.version>1.7.36</slf4j.version>
 
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <mockitoCore.version>4.3.1</mockitoCore.version>
+        <mockitoCore.version>4.6.1</mockitoCore.version>
         <jetbrains.annotations.version>23.0.0</jetbrains.annotations.version>
 
-        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.compiler.version>3.10.1</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.jar.version>3.2.0</maven.jar.version>
+        <maven.jar.version>3.2.2</maven.jar.version>
         <maven.resources.version>3.2.0</maven.resources.version>
-        <sonatype.nexus.version>1.6.8</sonatype.nexus.version>
-        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
+        <sonatype.nexus.version>1.6.13</sonatype.nexus.version>
+        <maven.surefire.version>3.0.0-M7</maven.surefire.version>
         <maven.source.version>3.2.1</maven.source.version>
-        <maven.javadoc.version>3.3.1</maven.javadoc.version>
+        <maven.javadoc.version>3.4.0</maven.javadoc.version>
         <maven.gpg.version>3.0.1</maven.gpg.version>
-        <maven.release.version>3.0.0-M4</maven.release.version>
-        <maven.enforcer.version>3.0.0</maven.enforcer.version>
-        <buildhelper.version>3.2.0</buildhelper.version>
-        <owasp.version>6.5.3</owasp.version>
+        <maven.release.version>3.0.0-M6</maven.release.version>
+        <maven.enforcer.version>3.1.0</maven.enforcer.version>
+        <buildhelper.version>3.3.0</buildhelper.version>
+        <owasp.version>7.1.1</owasp.version>
     </properties>
 
     <dependencies>
@@ -153,6 +153,26 @@
                 <version>${maven.resources.version}</version>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>4.0.0-M2</version>
+            </plugin>
+            <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
                 <version>${owasp.version}</version>
@@ -170,13 +190,18 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.11.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>${buildhelper.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-wrapper-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.1.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
