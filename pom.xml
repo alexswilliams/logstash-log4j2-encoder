@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.alexswilliams</groupId>
@@ -30,36 +31,42 @@
         <connection>scm:git:git@github.com:alexswilliams/logstash-log4j2-encoder.git</connection>
         <developerConnection>scm:git:git@github.com:alexswilliams/logstash-log4j2-encoder.git</developerConnection>
         <url>https://github.com/alexswilliams/logstash-log4j2-encoder/tree/master</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.minimum.version>[3.3,)</maven.minimum.version>
+        <maven.minimum.version>[3.2.5,)</maven.minimum.version>
 
-        <jackson.version>2.13.3</jackson.version>
-        <log4j2.version>2.18.0</log4j2.version>
-        <slf4j.version>1.7.36</slf4j.version>
+        <jackson.version>2.14.1</jackson.version>
+        <log4j2.version>2.19.0</log4j2.version>
+        <slf4j.version>2.0.6</slf4j.version>
 
-        <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <mockitoCore.version>4.6.1</mockitoCore.version>
-        <jetbrains.annotations.version>23.0.0</jetbrains.annotations.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <mockitoCore.version>4.11.0</mockitoCore.version>
+        <jetbrains.annotations.version>23.1.0</jetbrains.annotations.version>
 
         <maven.compiler.version>3.10.1</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.jar.version>3.2.2</maven.jar.version>
-        <maven.resources.version>3.2.0</maven.resources.version>
+        <maven.jar.version>3.3.0</maven.jar.version>
+        <maven.resources.version>3.3.0</maven.resources.version>
         <sonatype.nexus.version>1.6.13</sonatype.nexus.version>
         <maven.surefire.version>3.0.0-M7</maven.surefire.version>
         <maven.source.version>3.2.1</maven.source.version>
-        <maven.javadoc.version>3.4.0</maven.javadoc.version>
+        <maven.javadoc.version>3.4.1</maven.javadoc.version>
         <maven.gpg.version>3.0.1</maven.gpg.version>
-        <maven.release.version>3.0.0-M6</maven.release.version>
+        <maven.release.version>3.0.0-M7</maven.release.version>
         <maven.enforcer.version>3.1.0</maven.enforcer.version>
         <buildhelper.version>3.3.0</buildhelper.version>
-        <owasp.version>7.1.1</owasp.version>
+        <owasp.version>7.4.4</owasp.version>
+        <maven.clean.version>3.2.0</maven.clean.version>
+        <maven.deploy.version>3.0.0</maven.deploy.version>
+        <maven.install.version>3.1.0</maven.install.version>
+        <maven.site.version>4.0.0-M4</maven.site.version>
+        <versions.version>2.14.2</versions.version>
+        <maven.wrapper.version>3.1.1</maven.wrapper.version>
     </properties>
 
     <dependencies>
@@ -94,7 +101,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
             <version>${log4j2.version}</version>
             <scope>test</scope>
         </dependency>
@@ -155,22 +162,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${maven.clean.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0-M2</version>
+                <version>${maven.deploy.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>${maven.install.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>4.0.0-M2</version>
+                <version>${maven.site.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.owasp</groupId>
@@ -191,7 +198,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.11.0</version>
+                <version>${versions.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -201,7 +208,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-wrapper-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${maven.wrapper.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

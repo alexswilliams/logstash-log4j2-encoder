@@ -21,3 +21,5 @@ Include in your project as follows:
 
 The minimum supported JDK is 1.8.
 
+The minimum supported SLF4J is 2.0.0.
+
